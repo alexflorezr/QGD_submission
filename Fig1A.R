@@ -1,22 +1,21 @@
-# Script for figure 1
-# This figure has 2 panels: 
-#       A) sampling map
-#       B) climate change velocity per sp
+# Script for figure 1A: sampling map
 
 #### Panel A -- Sampling map ####
 
 #### Data required
-setwd("/Users/afr/Desktop/A/Phd_papers/QGD_submission/QGD_data/QGD_database")
 # The database
+setwd("/Users/afr/Desktop/A/Phd_papers/QGD_submission/QGD_data/QGD_database")
 QGD_DB <- read.delim("QGD_DB_clean.txt", sep="\t", h=T, stringsAsFactors = F)
 
-#### Plot map
+#### Auxiliary variables
 QGD_colors <- c("#CDAA7D","#7EC0EE")
+
+#### Plot map (function)
 # This function uses:
         # QGD_DB: the database
         # colp: color for Pleistocene records
         # colh: color for Holocene records
-QGD.F1.map <- function(QGD_DB, colp=QGD_colors[1], colh=QGD_colors[2]){
+QGD.F1A.map <- function(QGD_DB, colp=QGD_colors[1], colh=QGD_colors[2]){
         library(rworldmap)
         library(mapproj)
         # remove the records without coordinates
@@ -43,7 +42,7 @@ QGD.F1.map <- function(QGD_DB, colp=QGD_colors[1], colh=QGD_colors[2]){
                col=c(colp, colh), pt.cex = 1, cex=0.7, pt.lwd = 3,title = "Time bin",
                title.adj = c(0,0), y.intersp = 0.7, x.intersp = .9)
 }
-#### To run the function
+#### To execute the script ####
 pdf("Fig1_map.pdf", width = 4,height = 4)
-QGD.F1.map(QGD_DB)
+QGD.F1A.map(QGD_DB)
 dev.off()
